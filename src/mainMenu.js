@@ -24,7 +24,10 @@ export default class MainMenu extends Component{
                             <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/list">Daftar</a>
+                            <a className="nav-link" href="/list">Courses</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">{'Hi, ' + JSON.parse(localStorage.getItem('userInfo')).name}</a>
                         </li>
                         {
                             localStorage.getItem('userInfo') === null ?
@@ -38,9 +41,6 @@ export default class MainMenu extends Component{
                                 <a className="nav-link" href="#" onClick={this.logout}>Logout</a>
                             </li>
                         }
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">{'Hi, ' + JSON.parse(localStorage.getItem('userInfo')).name}</a>
-                        </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>

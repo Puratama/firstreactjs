@@ -44,7 +44,7 @@ export default class ListCourses extends Component{
                                         <div className="card-body">
                                             <h5 className="card-title">{course.title}</h5>
                                             <p className="card-text">{course.description}</p>
-                                            <a href="#" className="btn btn-primary">Go somewhere</a>
+                                            <a href={"/detail?slug=" + course.slug} className="btn btn-primary">Go somewhere</a>
                                         </div>
                                     </div>
                             )

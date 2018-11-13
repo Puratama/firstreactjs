@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
-export default class Login extends Component{
+export default class Register extends Component{
     constructor(){
         super();
         this.state = {
+            name: '',
             email: '',
+            phone: '',
             password: '',
             // resp: {
             //     name: 'Muhammad Rizky Pratama',
@@ -30,7 +32,9 @@ export default class Login extends Component{
         }
 
         const body = {
+            name: this.state.name,
             email: this.state.email,
+            phone: this.state.phone,
             password: this.state.password
         }
 
@@ -39,7 +43,7 @@ export default class Login extends Component{
             return;
         }
 
-        Axios.post('https://api.ingenio.co.id/api/auth', body, config).then( resp => {
+        Axios.post('https://api.ingenio.co.id/api/user/register', body, config).then( resp => {
             if(resp.data.error > 0){
                 console.log(resp.data.message);
                 this.setState({
@@ -47,19 +51,11 @@ export default class Login extends Component{
                 });
                 return;
             }
-            localStorage.setItem('userInfo', JSON.stringify(resp.data.data));
             window.location.replace('/');
         }).catch(error => {
             console.log(error);
         })
     }
-
-    // componentDidMount(){
-    //     if(localStorage.getItem('email') !== null){
-    //         window.location.replace('/');
-    //         return;
-    //     }
-    // }
 
     render(){
         return(
@@ -69,17 +65,27 @@ export default class Login extends Component{
                     <div className="avatar"></div>
                     <div className="form-box">
                         <form onSubmit={this.onSubmit} role="form">
-                            <input name="user" type="text" placeholder="email" value={this.state.email} onChange={ (e) => {
+                            <input name="user" type="text" placeholder="Name" value={this.state.name} onChange={ (e) => {
+                                this.setState({
+                                    name: e.target.value
+                                })
+                            }}/>
+                            <input name="email" type="text" placeholder="Email" value={this.state.email} onChange={ (e) => {
                                 this.setState({
                                     email: e.target.value
                                 })
                             }}/>
-                            <input type="password" placeholder="password" value={this.state.password} onChange={ (e) => {
+                            <input name="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={ (e) => {
+                                this.setState({
+                                    phone: e.target.value
+                                })
+                            }}/>
+                            <input type="password" placeholder="Password" value={this.state.password} onChange={ (e) => {
                                 this.setState({
                                     password: e.target.value
                                 })
                             }}/>
-                            <button className="btn btn-info btn-block login" type="submit">Login</button>
+                            <button className="btn btn-info btn-block login" type="submit">Register</button>
                         </form>
                     </div>
                 </div>
