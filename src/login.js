@@ -1,25 +1,64 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 
 export default class Login extends Component{
     constructor(){
         super();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            // resp: {
+            //     name: 'Muhammad Rizky Pratama',
+            //     email: 'rizky@mail.com',
+            //     phone: '08123456789'
+            // }
+            userInfo: []
         }
     }
 
     onSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+            errorMessage: ''
+        });
 
-        if(`${this.state.email}` == `asd@mail.com`){
-            if(`${this.state.password}` == `12345`){
-                window.location = "/";
-            }else{
-                alert(`Email: ${this.state.email} and Password: ${this.state.password}`);
+        const config = {
+            headers: {
+                'content-type' : 'application/json',
+                'Authorization' : '293ir039r9ife992i39f9i2093i1'
             }
         }
+
+        const body = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        if(this.state.email === '' || this.state.password === ''){
+            alert('Email dan Password tidak boleh kosong');
+            return;
+        }
+
+        Axios.post('https://api.ingenio.co.id/api/auth', body, config).then( resp => {
+            if(resp.data.error > 0){
+                this.setState({
+                    errorMessage: resp.data.message
+                });
+                return;
+            }
+            localStorage.setItem('userInfo', JSON.stringify(resp.data.data));
+            window.location.replace('/');
+        }).catch(error => {
+            console.log(error);
+        })
     }
+
+    // componentDidMount(){
+    //     if(localStorage.getItem('email') !== null){
+    //         window.location.replace('/');
+    //         return;
+    //     }
+    // }
 
     render(){
         return(

@@ -6,6 +6,7 @@ import './App.css';
 import MainMenu from './mainMenu';
 import Daftar from './daftar';
 import Login from './login';
+import ListCourses from './listCourse';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path='/' component={MainMenu} />
             <Route exact path='/daftar' component={Daftar} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/list' component={ListCourses} />
           </switch>
         </div>
       </Router>
