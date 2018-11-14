@@ -45,7 +45,7 @@ export default class Register extends Component{
 
         Axios.post('https://api.ingenio.co.id/api/user/register', body, config).then( resp => {
             if(resp.data.error > 0){
-                console.log(resp.data.message);
+                // console.log(resp.data.message);
                 this.setState({
                     errorMessage: resp.data.message
                 });

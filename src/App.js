@@ -9,20 +9,22 @@ import Login from './login';
 import ListCourses from './listCourse';
 import DetailCourses from './detail_course';
 import Register from './register';
+import NavigationBar from './navigationBar';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <switch>
+          <NavigationBar />
+          <Switch>
             <Route exact path='/' component={MainMenu} />
             <Route exact path='/daftar' component={Daftar} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/list' component={ListCourses} />
             <Route exact path='/detail' component={DetailCourses} />
             <Route exact path='/register' component={Register} />
-          </switch>
+          </Switch>
         </div>
       </Router>
     );

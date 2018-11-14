@@ -20,7 +20,7 @@ export default class DetailCourses extends Component {
             }
         }
         axios.get('https://api.ingenio.co.id/api/course/detail/' + slug, config).then(resp => {
-            console.log(resp.data);
+            // console.log(resp.data);
             this.setState({
                 course: resp.data.data.course,
                 total_course: resp.data.data.total_courses
